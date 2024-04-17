@@ -3,6 +3,4 @@ services:
   web:
     build: .
     ports:
-      - "8082:80"  # Rediriger le port 8080 de l'hôte vers le port 80 du conteneur
-    volumes:
-      - ./index.php:/var/www/html  # Monter le répertoire contenant vos fichiers PHP
+      - "8082:80"  # Forward host port 8080 to container port 80

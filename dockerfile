@@ -1,8 +1,11 @@
-# Utiliser l'image PHP officielle
-FROM php:7.4-apache
+# Use the official Nginx image
+FROM nginx:latest
 
-# Copier les fichiers de votre application dans le conteneur
-COPY . /var/www/html
+# Copy the entire folder into the container
+COPY /home/yusei/Downloads/MontoringEDI /usr/share/nginx/html
 
-# Exposer le port Apache
+# Expose port 80
 EXPOSE 80
+
+# Start Nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
