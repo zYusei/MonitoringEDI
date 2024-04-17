@@ -2,9 +2,28 @@ pipeline {
     agent any
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('Checkout SCM') {
             steps {
                 git branch: 'main', credentialsId: 'github', url: 'https://github.com/zYusei/MonitoringEDI.git'
+            }
+        }
+        stage('Maven Compile') {
+            steps {
+                script {
+                    sh 'mvn compile'
+                }
+            }
+        }
+        stage('Maven Test') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
             }
         }
         stage('Build Docker Image') {
@@ -34,23 +53,12 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                echo 'Running tests...'
-
                 sh 'docker login -u autumnsummrs64@gmail.com -p Dauphindu99@'
 
-
+                // Pull the Docker image
                 sh "docker pull zyuseiii/monitoringedi:latest"
 
-
-                sh "docker inspect zyuseiii/monitoringedi:latest"
-
-
-                sh "docker run --name test-container -d zyuseiii/monitoringedi:latest"
-
-
-                sh "docker exec test-container php -v"
-
-
+                // Stop and remove the test container
                 sh "docker stop test-container && docker rm test-container"
             }
         }
