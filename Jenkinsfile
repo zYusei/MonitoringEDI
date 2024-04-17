@@ -36,6 +36,8 @@ pipeline {
             steps {
                 echo 'Running tests...'
 
+                sh 'docker login -u autumnsummrs64@gmail.com -p Dauphindu99@'
+
 
                 sh "docker pull monitoringedi:latest"
 
