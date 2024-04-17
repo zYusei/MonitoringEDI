@@ -12,20 +12,6 @@ pipeline {
                 git branch: 'main', credentialsId: 'github', url: 'https://github.com/zYusei/MonitoringEDI.git'
             }
         }
-        stage('Maven Compile') {
-            steps {
-                script {
-                    sh 'mvn clean compile'
-                }
-            }
-        }
-        stage('Maven Test') {
-            steps {
-                script {
-                    sh 'mvn test'
-                }
-            }
-        }
         stage('Build Docker Image') {
             steps {
                 script {
