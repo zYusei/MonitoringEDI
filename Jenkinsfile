@@ -35,6 +35,21 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo 'Running tests...'
+
+
+                sh "docker pull monitoringedi:latest"
+
+
+                sh "docker inspect monitoringedi:latest"
+
+
+                sh "docker run --name test-container -d monitoringedi:latest"
+
+
+                sh "docker exec test-container php -v"
+
+
+                sh "docker stop test-container && docker rm test-container"
             }
         }
         stage('Deploy to EC2') {
