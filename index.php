@@ -8,13 +8,13 @@ $yesterday = date('Ymd', strtotime('-1 day'));
 
 // Database Connection
 
-$servername = "IEDU11V0183";
+$servername = "";
 
-$username = "u1271251";
+$username = "";
 
-$password = "u1271251Pwd!";
+$password = "";
 
-$dbname = "edimessage";
+$dbname = "";
 
  
 
