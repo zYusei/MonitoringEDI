@@ -1,11 +1,10 @@
-# Use the official Nginx image
-FROM nginx:latest
+FROM php:7.4-apache
 
-# Copy all files and directories into the container
-COPY . /usr/share/nginx/html
+# Installation des dépendances PHP nécessaires
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Expose port 80
+# Copier les fichiers de l'application dans le répertoire de travail du conteneur
+COPY . /var/www/html
+
+# Exposer le port 80 pour accéder à l'application via le navigateur
 EXPOSE 80
-
-# Start Nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"]
