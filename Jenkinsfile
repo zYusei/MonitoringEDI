@@ -41,10 +41,19 @@ pipeline {
             steps {
                 sh 'docker login -u autumnsummrs64@gmail.com -p Dauphindu99@'
 
-                // Pull the Docker image
+
                 sh "docker pull zyuseiii/monitoringedi:latest"
 
-                // Stop and remove the test container
+
+                sh "docker inspect zyuseiii/monitoringedi:latest"
+
+
+                sh "docker run --name test-container -d zyuseiii/monitoringedi:latest"
+
+
+                sh "docker exec test-container php -v"
+
+
                 sh "docker stop test-container && docker rm test-container"
             }
         }
