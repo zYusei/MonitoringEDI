@@ -6,6 +6,3 @@ COPY . /var/www/html
 
 # Exposer le port Apache
 EXPOSE 80
-
-# Commande pour démarrer Apache (ouvrir votre page PHP)
-CMD ["apache2-foreground"]
