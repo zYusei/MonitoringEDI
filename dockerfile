@@ -2,7 +2,7 @@
 FROM nginx:latest
 
 # Copy the entire folder into the container
-COPY . /usr/share/nginx/html
+COPY index.php /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
