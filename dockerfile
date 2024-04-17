@@ -2,7 +2,7 @@
 FROM nginx:latest
 
 # Copy all files and directories into the container
-COPY /home/yusei/Downloads/MontoringEDI /usr/share/nginx/html
+COPY /home/yusei/Downloads/MontoringEDI/index.php /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
