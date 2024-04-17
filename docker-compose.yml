@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8081:80"  # Rediriger le port 8080 de l'hôte vers le port 80 du conteneur
+    volumes:
+      - ./MonitoringEDI:/var/www/html  # Monter le répertoire contenant vos fichiers PHP
