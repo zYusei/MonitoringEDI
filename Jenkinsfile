@@ -39,13 +39,13 @@ pipeline {
                 sh 'docker login -u autumnsummrs64@gmail.com -p Dauphindu99@'
 
 
-                sh "docker pull monitoringedi:latest"
+                sh "docker pull zyuseiii/monitoringedi:latest"
 
 
-                sh "docker inspect monitoringedi:latest"
+                sh "docker inspect zyuseiii/monitoringedi:latest"
 
 
-                sh "docker run --name test-container -d monitoringedi:latest"
+                sh "docker run --name test-container -d zyuseiii/monitoringedi:latest"
 
 
                 sh "docker exec test-container php -v"
