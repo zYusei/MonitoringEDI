@@ -59,10 +59,12 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                script {
-                    def scannerHome = tool 'SonarScanner';
-                    withSonarQubeEnv('Sonar-Server') {
-                        sh "${scannerHome}/bin/sonar-scanner"
+                withSonarQubeEnv('Sonar-Server') {
+                    script {
+                        def scannerHome = tool 'SonarScanner';
+                        sh "${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=Monitoring \
+                            -Dsonar.sources=."
                     }
                 }
             }
