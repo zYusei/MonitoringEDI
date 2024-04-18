@@ -61,8 +61,8 @@ pipeline {
         stage('Security Scan with Trivy') {
             steps {
                 script {
-                    // Pull the latest Docker image
-                    sh "docker build -t zyuseiii/monitoringedi:latest"
+                    // build the latest Docker image
+                    sh "docker build -t zyuseiii/monitoringedi:latest ."
 
                     // Run Trivy to scan the Docker image for vulnerabilities
                     sh "trivy zyuseiii/monitoringedi:latest"
