@@ -82,7 +82,7 @@ pipeline {
                     // Execute commands on the EC2 instance
                     sshagent(credentials: ['SSH-KEY']) {
                         sh '''
-                            ssh -o StrictHostKeyChecking=no ubuntu@35.180.190.54 'cd /home/ubuntu/MontoringEDI && sudo docker-compose up --build -d'
+                            ssh -o StrictHostKeyChecking=no ubuntu@13.37.32.150 'cd /home/ubuntu/MontoringEDI && sudo docker-compose up --build -d'
                         '''
                     }
                 }
