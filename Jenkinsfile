@@ -42,7 +42,7 @@ pipeline {
                 }
             }
         }
-        stage('Build and push Docker Image') {
+        stage('Push Docker Image') {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker', toolName:'docker') {
