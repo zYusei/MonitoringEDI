@@ -33,7 +33,7 @@ pipeline {
         stage('Run Docker Containers') {
             steps {
                 script {
-                    sh 'docker-compose up --build'
+                    sh 'docker-compose up --build -d'
                     sh 'docker-compose down'
                 }
             }
