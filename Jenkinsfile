@@ -19,6 +19,29 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('Sonar-Server') {
+                    script {
+                        def scannerHome = tool 'SonarScanner';
+                        sh "${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=Monitoring \
+                            -Dsonar.sources=."
+                    }
+                }
+            }
+        }
+        stage('Security Scan with Trivy') {
+            steps {
+                script {
+                    // build the latest Docker image
+                    sh "docker build -t zyuseiii/monitoringedi:latest ."
+
+                    // Run Trivy to scan the Docker image for vulnerabilities
+                    sh "trivy image zyuseiii/monitoringedi:latest"
+                }
+            }
+        }
         stage('Build and push Docker Image') {
             steps {
                 script {
@@ -56,29 +79,6 @@ pipeline {
 
 
                 sh "docker stop test-container && docker rm test-container"
-            }
-        }
-        stage('Security Scan with Trivy') {
-            steps {
-                script {
-                    // build the latest Docker image
-                    sh "docker build -t zyuseiii/monitoringedi:latest ."
-
-                    // Run Trivy to scan the Docker image for vulnerabilities
-                    sh "trivy image zyuseiii/monitoringedi:latest"
-                }
-            }
-        }
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('Sonar-Server') {
-                    script {
-                        def scannerHome = tool 'SonarScanner';
-                        sh "${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=Monitoring \
-                            -Dsonar.sources=."
-                    }
-                }
             }
         }
         stage('Deploy to EC2') {
