@@ -62,7 +62,7 @@ pipeline {
                 script {
                     def ec2Instance = [
                         name: 'ec2-instance',
-                        host: '35.180.190.54',
+                        host: '13.37.32.150',
                         user: 'ubuntu',
                         credentialsId: 'SSH-KEY' // ID of SSH credentials
                     ]
