@@ -73,8 +73,8 @@ pipeline {
             steps {
                 script {
                     def ec2Instance = [
-                        name: 'ec2-instance',
-                        host: '13.37.32.150',
+                        name: 'Monitoring',
+                        host: '13.38.130.124',
                         user: 'ubuntu',
                         credentialsId: 'SSH-KEY' // ID of SSH credentials
                     ]
@@ -82,7 +82,7 @@ pipeline {
                     // Execute commands on the EC2 instance
                     sshagent(credentials: ['SSH-KEY']) {
                         sh '''
-                            ssh -o StrictHostKeyChecking=no ubuntu@13.37.32.150 'cd /home/ubuntu/MontoringEDI && sudo docker-compose up --build -d'
+                            ssh -o StrictHostKeyChecking=no ubuntu@13.38.130.124 'cd /home/ubuntu/MontoringEDI && sudo docker-compose up --build -d'
                         '''
                     }
                 }
