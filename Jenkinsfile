@@ -58,6 +58,17 @@ pipeline {
                 sh "docker stop test-container && docker rm test-container"
             }
         }
+        stage('Security Scan with Trivy') {
+            steps {
+                script {
+                    // Pull the latest Docker image
+                    sh "docker pull zyuseiii/monitoringedi:latest"
+
+                    // Run Trivy to scan the Docker image for vulnerabilities
+                    sh "trivy --exit-code 1 --severity HIGH,CRITICAL zyuseiii/monitoringedi:latest"
+                }
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('Sonar-Server') {
