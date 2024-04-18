@@ -57,6 +57,16 @@ pipeline {
                 sh "docker stop test-container && docker rm test-container"
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner';
+                    withSonarQubeEnv('Sonar-Server') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
         stage('Deploy to EC2') {
             steps {
                 script {
