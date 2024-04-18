@@ -65,7 +65,7 @@ pipeline {
                     sh "docker build -t zyuseiii/monitoringedi:latest ."
 
                     // Run Trivy to scan the Docker image for vulnerabilities
-                    sh "trivy zyuseiii/monitoringedi:latest"
+                    sh "trivy image zyuseiii/monitoringedi:latest"
                 }
             }
         }
