@@ -24,7 +24,7 @@ resource "aws_security_group" "devOps-sg" {
     Name = "devOps-sg"
   }
 }
-resource "aws_instance" "Jenkins" {
+resource "aws_instance" "MonitoringEDI" {
   ami                    = "ami-0c7217cdde317cfec"
   instance_type          = "t2.micro"
   key_name               = "myKeyPairDevOps"
